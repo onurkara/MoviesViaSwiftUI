@@ -10,7 +10,8 @@ import Foundation
 @MainActor
 final class MoviesViewModel: ObservableObject {
 
-    @Published var movies: [Movie] = []
+    @Published var popularMovies: [Movie] = []
+    @Published var latestMovies: [Movie] = []
     @Published var message: String = ""
 
     private let movieRepository: MovieRepositoryProtocol
@@ -20,14 +21,28 @@ final class MoviesViewModel: ObservableObject {
     }
 
     func fetchMovies() async {
-        guard let result = try? await movieRepository.fetchPopularMovies() else {
-            return
+        async let popularMoviesResponse = try? movieRepository.fetchPopularMovies()
+        async let latestsMoviesResponse = try? movieRepository.fetchLatestMovies()
+
+        if let popularResult = await popularMoviesResponse {
+            switch popularResult {
+            case .failure(let error):
+                self.message = error.description
+                return
+            case .success(let movies):
+                self.popularMovies = movies
+                return
+            }
         }
-        switch result {
-        case .success(let movies):
-            self.movies = movies
-        case .failure(let error):
-            self.message = error.description
+
+        if let latestResult = await latestsMoviesResponse {
+            switch latestResult {
+            case .failure(let error):
+                self.message = error.description
+                return
+            case .success(let movies):
+                self.latestMovies = movies
+            }
         }
     }
 }
