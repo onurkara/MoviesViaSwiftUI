@@ -12,12 +12,33 @@ struct MovieView: View {
     var movie: Movie
 
     var body: some View {
-        VStack(alignment: .leading,
-               spacing: 4.0) {
-            Text(movie.title ?? "")
-            Text(movie.overview ?? "")
+        VStack(spacing: 4.0) {
+            HStack {
+                AsyncImage(url: URL(string: ""))
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 70, alignment: .top)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(movie.title ?? "")
+                        .font(.system(size: 14,
+                                      weight: .bold,
+                                      design: .monospaced))
+                        .frame(alignment: .leading)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false,
+                                   vertical: true)
+                    Text(movie.overview ?? "")
+                        .font(.system(size: 12,
+                                      weight: .semibold,
+                                      design: .serif))
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false,
+                                   vertical: true)
+                    Spacer()
+                }
+                Spacer()
+            }
             SeparatorView()
-        }
+        }.frame(height: 74)
     }
 }
 
