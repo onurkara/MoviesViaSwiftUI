@@ -14,8 +14,7 @@ struct MovieView: View {
     var body: some View {
         VStack(spacing: 4.0) {
             HStack {
-                AsyncImage(url: URL(string: ""))
-                    .aspectRatio(contentMode: .fit)
+                StandardAsyncImageView(imagePath: MoviePosterCreator.createPoster(posterPath: movie.poster_path ?? ""))
                     .frame(height: 70, alignment: .top)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(movie.title ?? "")
@@ -47,7 +46,7 @@ struct MovieView_Previews: PreviewProvider {
         MovieView(movie: Movie(id: 1,
                                title: "Temp movie title",
                                overview: "Temp overview",
-                               posterPath: "Image path",
+                               poster_path: "Image path",
                                voteAverage: 5.5))
     }
 }
