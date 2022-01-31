@@ -19,16 +19,29 @@ struct ContentView: View {
                         .listRowSeparator(.hidden)
                 }
                 .listStyle(PlainListStyle())
-                .task {
-                    await viewModel.fetchMovies()
-                }.navigationTitle("Populars")
+                .navigationTitle("Populars")
             }
             .tabItem {
+                Text("Populars")
                 Image(systemName: "flag.fill")
             }
+            NavigationView {
+                List(viewModel.topRatedMovies) { movie in
+                    MovieView(movie: movie)
+                        .listRowSeparator(.hidden)
+                }
+                .listStyle(PlainListStyle())
+                .navigationTitle("Top Rated")
+            }
+            .tabItem {
+                Text("Latests")
+                Image(systemName: "star.fill")
+            }
+        }
+        .task {
+            await viewModel.fetchMovies()
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
