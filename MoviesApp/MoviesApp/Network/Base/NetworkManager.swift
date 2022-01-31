@@ -29,5 +29,3 @@ final class NetworkManager {
         return response
     }
 }
-
-

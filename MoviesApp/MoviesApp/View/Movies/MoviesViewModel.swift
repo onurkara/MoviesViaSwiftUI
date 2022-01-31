@@ -31,7 +31,6 @@ final class MoviesViewModel: ObservableObject {
                 return
             case .success(let movies):
                 self.popularMovies = movies
-                return
             }
         }
 
