@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+final class MovieDetailViewModel: ObservableObject {
+
+    private let id: Int
+
+    init(id: Int) {
+        self.id = id
+    }
+}

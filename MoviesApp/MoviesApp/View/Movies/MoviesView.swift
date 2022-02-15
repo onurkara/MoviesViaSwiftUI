@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MoviesView.swift
 //  MoviesApp
 //
 //  Created by Onur on 12.01.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MoviesView: View {
 
     @StateObject var viewModel: MoviesViewModel
 
@@ -15,7 +15,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 List(viewModel.popularMovies) { movie in
-                    NavigationLink(destination: MovieDetailView()) {
+                    NavigationLink(destination: MovieDetailView(viewModel: MovieDetailViewModel(id: movie.id ?? 0))) {
                         MovieView(movie: movie)
                     }.listRowSeparator(.hidden)
                 }
@@ -45,8 +45,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MoviesView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: MoviesViewModel())
+        MoviesView(viewModel: MoviesViewModel())
     }
 }
