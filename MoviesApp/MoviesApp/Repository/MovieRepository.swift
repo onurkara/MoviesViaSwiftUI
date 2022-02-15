@@ -10,7 +10,7 @@ import Darwin
 protocol MovieRepositoryProtocol {
 
     func fetchPopularMovies() async throws -> Result<[Movie], BaseError>
-    func fetchLatestMovies() async throws -> Result<[Movie], BaseError>
+    func fetchTopRatedMovies() async throws -> Result<[Movie], BaseError>
 }
 
 final class MovieRepository: MovieRepositoryProtocol {
@@ -24,9 +24,9 @@ final class MovieRepository: MovieRepositoryProtocol {
         }
     }
 
-    func fetchLatestMovies() async throws -> Result<[Movie], BaseError> {
+    func fetchTopRatedMovies() async throws -> Result<[Movie], BaseError> {
         do {
-            let latestMoviesResponse: MovieResponse? = try await NetworkManager.shared.submitRequest(request: LatestMoviesRequest())
+            let latestMoviesResponse: MovieResponse? = try await NetworkManager.shared.submitRequest(request: TopRatedMoviesRequest())
             return .success(latestMoviesResponse?.results ?? [])
         } catch {
             return .failure(.requestFailed)
