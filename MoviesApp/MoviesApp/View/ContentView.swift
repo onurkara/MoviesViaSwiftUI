@@ -15,8 +15,9 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 List(viewModel.popularMovies) { movie in
-                    MovieView(movie: movie)
-                        .listRowSeparator(.hidden)
+                    NavigationLink(destination: MovieDetailView()) {
+                        MovieView(movie: movie)
+                    }.listRowSeparator(.hidden)
                 }
                 .listStyle(PlainListStyle())
                 .navigationTitle("Populars")
