@@ -10,8 +10,14 @@ import Foundation
 final class MovieDetailViewModel: ObservableObject {
 
     private let id: Int
+    private let movieDetailRepository: MovieDetailRepositoryProtocol
 
-    init(id: Int) {
+    init(id: Int, movieDetailRepository: MovieDetailRepositoryProtocol = MovieDetailRepository()) {
         self.id = id
+        self.movieDetailRepository = movieDetailRepository
+    }
+
+    func fetchMovieDetailInformation() async {
+        //TODO: Will be implemented
     }
 }

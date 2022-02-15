@@ -12,6 +12,8 @@ struct MovieDetailView: View {
     @StateObject var viewModel: MovieDetailViewModel
     
     var body: some View {
-        Text("Movie Detail View will be implemented")
+        Text("Movie Detail View will be implemented").task {
+            await viewModel.fetchMovieDetailInformation()
+        }
     }
 }
