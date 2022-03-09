@@ -10,3 +10,7 @@ struct Keyword: Codable {
     let id: Int
     let name: String
 }
+
+extension Keyword: Hashable {
+    
+}
