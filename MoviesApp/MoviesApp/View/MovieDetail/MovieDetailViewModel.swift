@@ -22,6 +22,10 @@ final class MovieDetailViewModel: ObservableObject {
         self.movieDetailRepository = movieDetailRepository
     }
 
+    func sortKeywords() -> [Keyword] {
+        return keywords.sorted { $0.name < $1.name }
+    }
+
     func fetchMovieDetailInformation() async {
         async let movieDetailResult = try? movieDetailRepository.fetchMovieDetail(id: id)
         async let recommendationsResult = try? movieDetailRepository.fetchMovieRecommendations(id: id)
