@@ -10,10 +10,13 @@ import SwiftUI
 struct MovieDetailView: View {
 
     @StateObject var viewModel: MovieDetailViewModel
-    
+
     var body: some View {
-        Text("Movie Detail View will be implemented").task {
-            await viewModel.fetchMovieDetailInformation()
+        VStack {
+            DetailHeaderView(movieDetail: viewModel.detail).task {
+                await viewModel.fetchMovieDetailInformation()
+            }
+            KeywordsView(keywords: viewModel.sortKeywords())
         }
     }
 }

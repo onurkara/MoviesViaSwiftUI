@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct StandardAsyncImageView: View {
 
     var imagePath: String
