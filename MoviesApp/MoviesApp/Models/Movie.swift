@@ -20,3 +20,7 @@ extension Movie: Identifiable {
         return lhs.id == rhs.id
     }
 }
+
+extension Movie: Hashable {
+    
+}

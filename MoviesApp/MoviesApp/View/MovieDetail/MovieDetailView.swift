@@ -13,10 +13,20 @@ struct MovieDetailView: View {
 
     var body: some View {
         VStack {
-            DetailHeaderView(movieDetail: viewModel.detail).task {
-                await viewModel.fetchMovieDetailInformation()
+            ScrollView {
+                DetailHeaderView(movieDetail: viewModel.detail).task {
+                    await viewModel.fetchMovieDetailInformation()
+                }
+                if !viewModel.sortKeywords().isEmpty {
+                    KeywordsView(keywords: viewModel.sortKeywords())
+                }
+                if !viewModel.recommendations.isEmpty {
+                    HeaderView(headerText: "Recommendations")
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        RecommendationView(recommendations: viewModel.recommendations)
+                    }
+                }
             }
-            KeywordsView(keywords: viewModel.sortKeywords())
         }
     }
 }

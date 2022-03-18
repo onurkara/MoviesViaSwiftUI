@@ -25,6 +25,6 @@ struct StandardAsyncImageView: View {
             @unknown default:
                 EmptyView()
             }
-        }
+        }.cornerRadius(6)
     }
 }
