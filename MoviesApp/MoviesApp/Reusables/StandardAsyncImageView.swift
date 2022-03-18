@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StandardAsyncImageView: View {
 
+    var height: CGFloat
     var imagePath: String
 
     var body: some View {
@@ -17,9 +18,9 @@ struct StandardAsyncImageView: View {
             case .empty:
                 ProgressView()
             case .success(let image):
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 70, alignment: .top)
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: height, alignment: .top)
             case .failure:
                 EmptyView()
             @unknown default:

@@ -16,9 +16,8 @@ struct RecommendationView: View {
                   spacing: 20) {
             Section() {
                 ForEach(recommendations, id: \.self) { recommendation in
-                    VStack {
-                        StandardAsyncImageView(imagePath: MoviePosterCreator.createPoster(posterPath: recommendation.poster_path ?? ""))
-                    }
+                    StandardAsyncImageView(height: 140,
+                                           imagePath: MoviePosterCreator.createPoster(posterPath: recommendation.poster_path ?? ""))
                 }
             }
         }.padding(EdgeInsets(top: 10,

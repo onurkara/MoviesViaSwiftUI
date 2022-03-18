@@ -14,7 +14,8 @@ struct MovieView: View {
     var body: some View {
         VStack(spacing: 4.0) {
             HStack {
-                StandardAsyncImageView(imagePath: MoviePosterCreator.createPoster(posterPath: movie.poster_path ?? ""))
+                StandardAsyncImageView(height: 70,
+                                       imagePath: MoviePosterCreator.createPoster(posterPath: movie.poster_path ?? ""))
                     .frame(height: 70, alignment: .top)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(movie.title ?? "")
